@@ -1,0 +1,35 @@
+{
+  "id": "/",
+  "name": "YOCH — Your Channel",
+  "short_name": "YOCH",
+  "description": "Your Channel. Your Choice. You Choose. A private, local, AI-native personal channel.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF7FB",
+  "theme_color": "#FF4D9A",
+  "lang": "en",
+  "categories": ["social", "lifestyle", "entertainment"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Create",
+      "short_name": "YOCR",
+      "description": "Make a video or Grok creation",
+      "url": "./index.html#create"
+    },
+    {
+      "name": "Messages",
+      "short_name": "Inbox",
+      "url": "./index.html#messages"
+    }
+  ]
+}
