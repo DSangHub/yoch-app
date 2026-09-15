@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FF4D9A" />
+  <meta name="description" content="YOCH — Your Channel. Your Choice. You Choose. Private, local, AI-native personal channels." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="YOCH" />
+  <title>YOCH — Your Channel Your Choice</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./icons/icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;650&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-mark">Y</div>
+        <div class="wordmark">
+          <b>YOCH</b>
+          <span>yoch.app</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="pill" id="geo-pill" title="Enable local geolocation">Local off</button>
+        <button class="btn btn-gold" id="install-btn" style="display:none">Install</button>
+      </div>
+    </header>
+    <main class="stage">
+      <section class="view active" id="view-welcome">
+        <div class="hero">
+          <div class="kicker">YOUR CHANNEL · YOUR CHOICE · YOU CHOOSE</div>
+          <h1>Your page. Your people. <em id="hero-name">your</em> rules.</h1>
+          <p class="lede">Make a channel that actually feels like you. Pick who can watch. Keep it local. Post the day, star in the video, text your circle — no algorithm owning the vibe.</p>
+          <div class="stickers">
+            <span class="sticker pink">Top 8 is back</span>
+            <span class="sticker blue">Local only</span>
+            <span class="sticker lime">You = the star</span>
+            <span class="sticker sun">Private msgs</span>
+            <span class="sticker violet">Grok drafts</span>
+          </div>
+          <div class="cta-row">
+            <button class="btn btn-gold" id="start-channel">Create your channel</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('geo-pill').click()">Keep it local</button>
+            <button class="btn btn-rose" onclick="document.querySelector('[data-view=create]').click()">Make a vid</button>
+          </div>
+          <div class="modules">
+            <div class="mod"><small>YOFR</small><b>Your Friends</b><p>Rank your Top 8. Everyone else still gets a seat — just not front row.</p></div>
+            <div class="mod"><small>YOCR</small><b>Your Creations</b><p>Videos with you as the star. Tiny Grok drafts when you want a caption.</p></div>
+            <div class="mod"><small>YOMO</small><b>Your Money</b><p>Tips, subs, little drops. Your channel can pay you back.</p></div>
+            <div class="mod"><small>YOLI</small><b>Your Life Your Love</b><p>A bright journal that can stay invite-only. Crush notes included.</p></div>
+          </div>
+        </div>
+      </section>
+      <section class="view" id="view-channel">
+        <div class="channel-head"><div class="cover"><div class="avatar" id="ch-avatar">Y</div></div>
+          <div class="channel-meta">
+            <div class="row space wrap"><div><h1 id="ch-name">You</h1><p class="muted"><span id="ch-handle">@you</span> · <span id="privacy-label">Friends only</span></p></div>
+              <button class="btn btn-ghost" id="edit-channel">Edit channel</button></div>
+            <p class="muted" id="ch-bio" style="margin-top:8px">Daily life, on my terms.</p>
+            <div class="tags"><span class="tag">Channel</span><span class="tag teal">Geolocal</span><span class="tag rose">Who can watch: you choose</span></div>
+            <div class="mood"><div><div class="tiny">MOOD</div><b id="ch-mood">Building my channel</b></div><div class="now-playing" id="ch-vibe">Late-night gold light · lo-fi</div></div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card composer"><h2>Daily adventure</h2><p class="muted">Add a moment. Visibility follows your channel rules.</p>
+            <textarea id="adventure" placeholder="What happened within reach today?"></textarea>
+            <div class="row space" style="margin-top:10px"><span class="tiny">Saved on-device until you connect a backend</span><button class="btn btn-gold" id="publish">Post</button></div>
+            <div class="feed" id="feed"></div></div>
+          <div class="card"><h2>Who can watch</h2><p class="muted">Public internet is optional. Local radius is a first-class setting — not an afterthought.</p><hr class="sep" /><p class="tiny">This is the MySpace instinct, updated: your page, your skin, your circle, your rules. Private messages live in the column to the right.</p></div>
+        </div>
+      </section>
+      <section class="view" id="view-friends">
+        <div class="card" style="margin-bottom:14px"><h2>YOFR — Your Friends</h2><p class="muted">Eight seats up front. Everyone else still belongs, just further down the hall.</p><div class="top8" id="top8" style="margin-top:14px"></div></div>
+        <div class="card"><h2>Circle</h2><div class="list" id="friend-list" style="margin-top:10px"></div></div>
+      </section>
+      <section class="view" id="view-create">
+        <div class="card"><h2>YOCR — Your Creations</h2><p class="muted">Make a video with you as the star, or ask Grok for a small draft — caption, beat sheet, channel note. Not a content factory.</p>
+          <div class="studio-grid" style="margin-top:14px">
+            <button class="choice selected" data-scene="golden hour walk"><b>Golden hour walk</b><span class="tiny">You, street light, one line to camera</span></button>
+            <button class="choice" data-scene="kitchen table truth"><b>Kitchen table</b><span class="tiny">Hands, steam, an honest minute</span></button>
+            <button class="choice" data-scene="local night market"><b>Night market</b><span class="tiny">Geo-tagged to your radius</span></button>
+            <button class="choice" data-scene="friend porch set"><b>Porch set</b><span class="tiny">Two chairs, Top 8 energy</span></button>
+          </div>
+          <div class="preview-stage"><div><div class="kicker">YOU ARE THE STAR</div><h3 id="preview-copy">Your face. Your street. Your cut.</h3><p class="muted">No stock influencer stand-in. The preview is you.</p><div class="cta-row" style="margin-top:16px"><button class="btn btn-gold" id="btn-star">Lock storyboard</button></div></div></div>
+          <hr class="sep" /><label class="tiny">MINIMAL GROK CREATION</label>
+          <textarea id="grok-seed" placeholder="Give Grok a seed: mood, place, or one sentence." style="margin:8px 0 10px;min-height:70px;width:100%;background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:12px 14px"></textarea>
+          <button class="btn btn-ghost" id="btn-grok">Draft with Grok</button><p class="muted" id="grok-out" style="margin-top:12px"></p></div>
+        <div class="card" style="margin-top:14px"><h2>Library</h2><div class="feed" id="creation-list"></div></div>
+      </section>
+      <section class="view" id="view-money">
+        <div class="card"><h2>YOMO — Your Money</h2><p class="muted">Tips, subscriptions, and small sales. The channel is the storefront; you keep the relationship.</p>
+          <div class="balance" id="yo-balance">$128.40</div>
+          <div class="stat-row"><div class="stat"><b id="st-tips">$42</b><span>Tips</span></div><div class="stat"><b id="st-subs">11</b><span>Subscribers</span></div><div class="stat"><b id="st-sales">3</b><span>Sales</span></div></div>
+          <div class="cta-row" style="margin-top:16px;justify-content:flex-start"><button class="btn btn-gold" id="btn-tip">Demo +$5 tip</button><button class="btn btn-ghost">Payout settings</button></div>
+          <hr class="sep" /><p class="tiny">Prototype ledger only. Wire Stripe Connect or a wallet when you ship the backend.</p></div>
+      </section>
+      <section class="view" id="view-life">
+        <div class="card"><h2>YOLI — Your Life Your Love</h2><p class="muted">Not a performance feed. A quiet column for what you actually want to keep.</p>
+          <div class="field" style="margin-top:14px"><label>Title</label><input id="j-title" placeholder="A small true thing" /></div>
+          <div class="field"><label>Note</label><textarea id="j-body" rows="4" placeholder="This can stay invite-only."></textarea></div>
+          <button class="btn btn-gold" id="btn-journal">Save to YOLI</button></div>
+        <div class="feed" id="journal" style="margin-top:14px"></div>
+      </section>
+    </main>
+    <nav class="tabbar">
+      <button class="tab" data-view="life"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.6-7 10-7 10Z"/></svg>YOLI</button>
+      <button class="tab" data-view="channel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.2"/><path d="M5 19c1.2-3.2 3.7-5 7-5s5.8 1.8 7 5"/></svg>Channel</button>
+      <button class="tab" data-view="friends"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="9" r="2.4"/><circle cx="16" cy="10" r="2"/><path d="M4.5 18c.8-2.4 2.5-3.6 4.5-3.6s3.7 1.2 4.5 3.6"/><path d="M14 18c.4-1.6 1.5-2.6 3-2.6 1.4 0 2.4.8 3 2.6"/></svg>YOFR</button>
+      <button class="tab" data-view="create"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="m10 9 6 3-6 3V9Z"/></svg>YOCR</button>
+      <button class="tab" data-view="money"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c.4-1 1.4-1.6 2.5-1.6 1.6 0 2.6.8 2.6 2.1 0 2.8-5.2 1.4-5.2 4 0 1.2 1.1 2.1 2.6 2.1 1.2 0 2.2-.6 2.6-1.6"/></svg>YOMO</button>
+      <button class="tab" data-view="messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 6h14v10H8l-3 3V6Z"/></svg>Mail</button>
+    </nav>
+  </div>
+  <div class="drawer-backdrop" id="backdrop"></div>
+  <aside class="drawer" id="drawer">
+    <header class="row space"><div><div class="tiny">PRIVATE COLUMN</div><b>Messages</b></div><button class="btn btn-ghost" id="close-drawer">Close</button></header>
+    <div class="msgs" id="msgs"></div>
+    <footer><div class="composer-bar"><input id="msg-input" placeholder="A note only they can see…" /><button class="btn btn-gold" id="send-msg">Send</button></div></footer>
+  </aside>
+  <div class="modal" id="modal-create">
+    <div class="sheet">
+      <div class="row space"><h2 class="section-title" style="margin:0">Create your channel</h2><button class="btn btn-ghost" id="close-modal">Close</button></div>
+      <p class="muted" style="margin:8px 0 16px">Name it. Choose who watches. Set how local it stays.</p>
+      <div class="field"><label>Display name</label><input id="f-name" placeholder="Your name" /></div>
+      <div class="field"><label>Handle</label><input id="f-handle" placeholder="you" /></div>
+      <div class="field"><label>Bio</label><textarea id="f-bio" rows="2" placeholder="Daily life adventures, on purpose."></textarea></div>
+      <div class="field"><label>Mood</label><input id="f-mood" placeholder="How the channel feels today" /></div>
+      <div class="field"><label>Who can watch</label><select id="f-privacy"><option value="friends">Friends only</option><option value="local">Local radius only</option><option value="private">Invite only</option><option value="public">Anyone</option><option value="me">Only me</option></select></div>
+      <div class="field"><label>Local radius (km)</label><input id="f-radius" type="number" min="1" max="200" value="25" /></div>
+      <div class="row wrap" style="margin-bottom:14px"><button class="btn btn-ghost" id="btn-locate" type="button">Use geolocation</button></div>
+      <button class="btn btn-gold" id="save-channel" style="width:100%">Publish channel</button>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
